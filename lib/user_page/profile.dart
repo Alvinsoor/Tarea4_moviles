@@ -29,26 +29,6 @@ class _ProfileState extends State<Profile> {
   StreamSubscription<ConnectivityResult>? _subscription;
 
   @override
-  void initState() {
-    _subscription =
-        Connectivity().onConnectivityChanged.listen((connectivityResult) {
-      print(connectivityResult);
-      switch (connectivityResult) {
-        case ConnectivityResult.wifi:
-        case ConnectivityResult.mobile:
-          _isThereConnectivity(true);
-          break;
-        case ConnectivityResult.none:
-          _isThereConnectivity(false);
-          break;
-        default:
-      }
-    });
-
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Screenshot(
       controller: screenshotController,
@@ -207,27 +187,6 @@ class _ProfileState extends State<Profile> {
         ),
       ),
     );
-  }
-
-  void _isThereConnectivity(bool bool) {
-    setState(() {});
-    if (bool) {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(
-          SnackBar(
-            content: Text("Conectado a la red"),
-          ),
-        );
-    } else {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(
-          SnackBar(
-            content: Text("Descontectado de la red"),
-          ),
-        );
-    }
   }
 
   Future _shareScreen() async {
