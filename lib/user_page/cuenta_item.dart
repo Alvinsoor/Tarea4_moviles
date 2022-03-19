@@ -1,34 +1,27 @@
 import 'package:flutter/material.dart';
 
 class CuentaItem extends StatelessWidget {
-  final String tipoCuenta;
-  final String terminacion;
-  final String saldoDisponible;
-  const CuentaItem({
-    Key? key,
-    this.tipoCuenta = "Cuenta",
-    this.terminacion = "0000",
-    this.saldoDisponible = "0.0",
-  }) : super(key: key);
+  final data;
+  const CuentaItem({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
         title: Text(
-          "$tipoCuenta",
+          "${data["name"]} ${data["lastName"]}",
           style: TextStyle(
             color: Colors.indigo,
             fontWeight: FontWeight.bold,
             fontSize: 18,
           ),
         ),
-        subtitle: Text("~$terminacion"),
+        subtitle: Text("${data["lastFour"]}"),
         trailing: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "\$$saldoDisponible",
+              "\$${data["savings"]}",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w300,

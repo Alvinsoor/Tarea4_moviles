@@ -1,7 +1,7 @@
 name: money_track
 description: A new Flutter project.
 
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
@@ -19,6 +19,8 @@ dependencies:
   share:
   screenshot:
   path_provider:
+  feature_discovery: ^0.14.1
+  connectivity_plus: ^2.2.1
 
 dev_dependencies:
   flutter_test:

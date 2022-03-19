@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:feature_discovery/feature_discovery.dart';
 
 import 'user_page/bloc/picture_bloc.dart';
 import 'user_page/profile.dart';
@@ -13,9 +14,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: BlocProvider(
-        create: (context) => PictureBloc(),
-        child: Profile(),
+      home: FeatureDiscovery.withProvider(
+        persistenceProvider: NoPersistenceProvider(),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => PictureBloc()),
+//            BlocProvider(
+//                create: (context) => AcclistBloc()..add(ListUpdateEvent())),
+          ],
+          child: Profile(),
+        ),
       ),
     );
   }
