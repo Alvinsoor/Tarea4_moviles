@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:feature_discovery/feature_discovery.dart';
+import 'package:money_track/user_page/bloc/account_bloc.dart';
 
 import 'user_page/bloc/picture_bloc.dart';
 import 'user_page/profile.dart';
@@ -19,8 +20,8 @@ class MyApp extends StatelessWidget {
         child: MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => PictureBloc()),
-//            BlocProvider(
-//                create: (context) => AcclistBloc()..add(ListUpdateEvent())),
+            BlocProvider(
+                create: (context) => AccountBloc()..add(UpdateListEvent())),
           ],
           child: Profile(),
         ),

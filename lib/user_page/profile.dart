@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:money_track/user_page/bloc/account_bloc.dart';
 
 import 'bloc/picture_bloc.dart';
 import 'circular_button.dart';
@@ -7,7 +8,6 @@ import 'cuenta_item.dart';
 
 import 'dart:async';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:feature_discovery/feature_discovery.dart';
 import 'package:path_provider/path_provider.dart';
@@ -179,9 +179,28 @@ class _ProfileState extends State<Profile> {
                   ],
                 ),
                 SizedBox(height: 48),
-                // CuentaItem(),
-                // CuentaItem(),
-                // CuentaItem(),
+                BlocConsumer<AccountBloc, AccountState>(
+                    builder: (context, state) {
+                      if (state is AccountSuccessState) {
+                        var data = state.data as List;
+                        return Container(
+                          height: 300,
+                          child: ListView.builder(
+                              itemCount: data.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return CuentaItem(
+                                  data: data[index],
+                                );
+                              }),
+                        );
+                      } else if (state is AccountErrorState) {
+                        return Center(
+                            child: Text("No se pudo cargar. Reinicie."));
+                      } else {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                    },
+                    listener: (context, state) {})
               ],
             ),
           ),

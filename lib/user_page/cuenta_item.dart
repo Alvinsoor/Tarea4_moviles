@@ -9,14 +9,14 @@ class CuentaItem extends StatelessWidget {
     return Card(
       child: ListTile(
         title: Text(
-          "${data["name"]} ${data["lastName"]}",
+          "${data["cardNum"]}",
           style: TextStyle(
             color: Colors.indigo,
             fontWeight: FontWeight.bold,
             fontSize: 18,
           ),
         ),
-        subtitle: Text("${data["lastFour"]}"),
+        subtitle: Text("~${data["lastFour"]}"),
         trailing: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
